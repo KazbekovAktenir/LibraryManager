@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="book_statuses">
+        <item>All</item>
+        <item>Reading</item>
+        <item>Read</item>
+        <item>Planned</item>
+    </string-array>
+</resources> 
