@@ -1,4 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">LibraryManager</string>
+    <string name="select_genre">Выберите жанр</string>
+    <string name="scan_isbn">Сканировать ISBN</string>
+    <string name="book_cover">Book Cover</string>
+
+    <string-array name="genre_array">
+        <item>Фантастика</item>
+        <item>Фэнтези</item>
+        <item>Детектив</item>
+        <item>Научная литература</item>
+        <item>История</item>
+        <item>Роман</item>
+        <item>Биография</item>
+        <item>Другое</item>
+    </string-array>
+
+    <string-array name="book_statuses">
+        <item>Читаю</item>
+        <item>Прочитано</item>
+        <item>В планах</item>
+    </string-array>
 </resources>

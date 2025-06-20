@@ -13,52 +13,71 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/text_view_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="?attr/colorOnSurface"
-            android:maxLines="2"
-            android:ellipsize="end"/>
+        <!-- Обложка книги -->
+        <ImageView
+            android:id="@+id/image_view_cover"
+            android:layout_width="80dp"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_book_placeholder"
+            android:contentDescription="@string/book_cover"
+            android:layout_marginEnd="16dp" />
 
-        <TextView
-            android:id="@+id/text_view_author"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="?attr/colorOnSurfaceVariant"
-            android:layout_marginTop="4dp"
-            android:maxLines="1"
-            android:ellipsize="end"/>
-
+        <!-- Информация о книге -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/text_view_genre"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/text_view_title"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                style="@style/Widget.Material3.Chip.Suggestion"/>
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="?attr/colorOnSurface"
+                android:maxLines="2"
+                android:ellipsize="end"/>
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/text_view_status"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/text_view_author"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textSize="14sp"
-                style="@style/Widget.Material3.Chip.Assist"/>
+                android:textSize="16sp"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:layout_marginTop="4dp"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/text_view_genre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    style="@style/Widget.Material3.Chip.Suggestion"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/text_view_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textSize="14sp"
+                    style="@style/Widget.Material3.Chip.Assist"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
 
-</com.google.android.material.card.MaterialCardView> 
+</com.google.android.material.card.MaterialCardView>

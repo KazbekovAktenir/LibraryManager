@@ -27,6 +27,10 @@ public class BookRepository {
         return bookDao.getBooksByStatus(status);
     }
 
+    public LiveData<List<Book>> getReadBooks() {
+        return bookDao.getBooksByStatus("READ");
+    }
+
     public LiveData<List<Book>> searchBooks(String query) {
         return bookDao.searchBooks(query);
     }
@@ -61,5 +65,9 @@ public class BookRepository {
 
     public void delete(Book book) {
         executorService.execute(() -> bookDao.delete(book));
+    }
+
+    public LiveData<List<Book>> getRecommendedBooks(String genre) {
+        return bookDao.getRecommendedBooks(genre);
     }
 }

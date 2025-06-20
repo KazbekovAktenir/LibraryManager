@@ -4,8 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
 
     <application
         android:allowBackup="true"
@@ -17,15 +19,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LibraryManager"
         tools:targetApi="31">
+
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Устраняем конфликт ориентации -->
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/zxing_CaptureTheme"
+            tools:replace="android:screenOrientation" />
 
         <activity
             android:name=".ui.addedit.AddEditBookActivity"
@@ -36,6 +45,11 @@
             android:name=".ui.detail.BookDetailActivity"
             android:exported="false"
             android:parentActivityName=".ui.main.MainActivity" />
+
+        <activity
+            android:name=".barcode.CaptureActivityPortrait"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"

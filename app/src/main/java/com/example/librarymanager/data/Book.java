@@ -3,6 +3,7 @@ package com.example.librarymanager.data;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 
 @Entity(tableName = "books")
 public class Book {
@@ -16,6 +17,9 @@ public class Book {
     @NonNull
     private String author;
 
+    @ColumnInfo(name = "image_url")
+    private String imageUrl;
+
     private String genre;
     private String isbn;
     private String status; // "READING", "READ", "PLANNED"
@@ -24,6 +28,7 @@ public class Book {
     private long addedDate;      // дата добавления
     private long lastReadDate;   // дата последнего чтения
 
+    // --- Конструктор ---
     public Book(@NonNull String title, @NonNull String author, String genre, String status) {
         this.title = title;
         this.author = author;
@@ -61,4 +66,7 @@ public class Book {
 
     public long getLastReadDate() { return lastReadDate; }
     public void setLastReadDate(long lastReadDate) { this.lastReadDate = lastReadDate; }
+
+    public String getImageUrl() { return imageUrl; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 }

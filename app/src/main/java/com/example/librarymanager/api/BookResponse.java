@@ -1,10 +1,8 @@
 package com.example.librarymanager.api;
 
-import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class BookResponse {
-    @SerializedName("items")
     private List<BookItem> items;
 
     public List<BookItem> getItems() {
@@ -12,7 +10,6 @@ public class BookResponse {
     }
 
     public static class BookItem {
-        @SerializedName("volumeInfo")
         private VolumeInfo volumeInfo;
 
         public VolumeInfo getVolumeInfo() {
@@ -21,14 +18,10 @@ public class BookResponse {
     }
 
     public static class VolumeInfo {
-        @SerializedName("title")
         private String title;
-
-        @SerializedName("authors")
         private List<String> authors;
-
-        @SerializedName("industryIdentifiers")
-        private List<IndustryIdentifier> industryIdentifiers;
+        private List<String> categories;
+        private ImageLinks imageLinks;
 
         public String getTitle() {
             return title;
@@ -38,24 +31,20 @@ public class BookResponse {
             return authors;
         }
 
-        public List<IndustryIdentifier> getIndustryIdentifiers() {
-            return industryIdentifiers;
+        public List<String> getCategories() {
+            return categories;
+        }
+
+        public ImageLinks getImageLinks() {
+            return imageLinks;
         }
     }
 
-    public static class IndustryIdentifier {
-        @SerializedName("type")
-        private String type;
+    public static class ImageLinks {
+        private String thumbnail;
 
-        @SerializedName("identifier")
-        private String identifier;
-
-        public String getType() {
-            return type;
-        }
-
-        public String getIdentifier() {
-            return identifier;
+        public String getThumbnail() {
+            return thumbnail;
         }
     }
-} 
+}

@@ -38,4 +38,7 @@ public interface BookDao {
 
     @Query("SELECT * FROM books WHERE genre = :genre")
     LiveData<List<Book>> getBooksByGenre(String genre);
+
+    @Query("SELECT * FROM books WHERE genre = :genre AND status != 'READ'")
+    LiveData<List<Book>> getRecommendedBooks(String genre);
 }

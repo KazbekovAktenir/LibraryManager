@@ -1,21 +1,19 @@
 package com.example.librarymanager.ui.main;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.librarymanager.R;
-import com.example.librarymanager.data.Book;
 import com.example.librarymanager.ui.addedit.AddEditBookActivity;
 import com.example.librarymanager.ui.detail.BookDetailActivity;
+import com.example.librarymanager.ui.recommendations.RecommendedBooksActivity;
 import com.example.librarymanager.viewmodel.BookViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -121,13 +119,24 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_settings) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
             // Handle settings
             return true;
-        } else if (item.getItemId() == R.id.action_about) {
+        } else if (id == R.id.action_about) {
             // Handle about
             return true;
+        } else if (id == R.id.action_recommendations) {
+            Intent intent = new Intent(MainActivity.this, RecommendedBooksActivity.class);
+            startActivity(intent);
+            return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
 }
