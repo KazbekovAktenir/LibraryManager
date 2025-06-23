@@ -16,7 +16,7 @@
 
     <item
         android:id="@+id/action_recommendations"
-        android:title="Рекомендации"
+        android:title="Recommendation"
         android:icon="@drawable/ic_recommend"
         app:showAsAction="ifRoom" />
 </menu>
