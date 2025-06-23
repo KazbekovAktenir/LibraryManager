@@ -1,5 +1,6 @@
 package com.example.librarymanager.ui.detail;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,16 +20,19 @@ import com.example.librarymanager.viewmodel.BookViewModel;
 public class BookDetailActivity extends AppCompatActivity {
     private BookViewModel bookViewModel;
     private int bookId;
+
     private TextView textTitle;
     private TextView textAuthor;
     private TextView textGenre;
     private TextView textStatus;
     private TextView textNotes;
+
     private EditText editReminderMinutes;
     private Button buttonSetReminder;
     private Button buttonEdit;
     private Button buttonDelete;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,10 +66,10 @@ public class BookDetailActivity extends AppCompatActivity {
         // Initialize ViewModel
         bookViewModel = new ViewModelProvider(this).get(BookViewModel.class);
 
-        // Observe book
+        // Observe book and update UI
         bookViewModel.getBookById(bookId).observe(this, this::updateUI);
 
-        // Setup button click listeners
+        // Set listeners
         buttonSetReminder.setOnClickListener(v -> setReminder());
         buttonEdit.setOnClickListener(v -> editBook());
         buttonDelete.setOnClickListener(v -> showDeleteConfirmationDialog());
@@ -82,13 +86,22 @@ public class BookDetailActivity extends AppCompatActivity {
     }
 
     private void setReminder() {
-        String minutesStr = editReminderMinutes.getText().toString();
+        String minutesStr = editReminderMinutes.getText().toString().trim();
+
         if (minutesStr.isEmpty()) {
             Toast.makeText(this, "Please enter minutes", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        long minutes = Long.parseLong(minutesStr);
+        long minutes;
+        try {
+            minutes = Long.parseLong(minutesStr);
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Invalid number", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Получаем текущую книгу и назначаем напоминание
         bookViewModel.getBookById(bookId).observe(this, book -> {
             if (book != null) {
                 bookViewModel.scheduleReadingReminder(book, minutes);
@@ -105,11 +118,11 @@ public class BookDetailActivity extends AppCompatActivity {
 
     private void showDeleteConfirmationDialog() {
         new AlertDialog.Builder(this)
-            .setTitle("Delete Book")
-            .setMessage("Are you sure you want to delete this book?")
-            .setPositiveButton("Delete", (dialog, which) -> deleteBook())
-            .setNegativeButton("Cancel", null)
-            .show();
+                .setTitle("Delete Book")
+                .setMessage("Are you sure you want to delete this book?")
+                .setPositiveButton("Delete", (dialog, which) -> deleteBook())
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 
     private void deleteBook() {
